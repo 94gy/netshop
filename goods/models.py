@@ -24,7 +24,7 @@ class GoodsDetailName(models.Model):
         return u'GoodsDetailName:%s'%self.gdname
 
 class GoodsDetail(models.Model):
-    gdurl = models.ImageField(upload_to='')
+    gdurl = models.ImageField(upload_to=' ')
     gdname = models.ForeignKey(GoodsDetailName, on_delete=models.CASCADE)
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE)
 

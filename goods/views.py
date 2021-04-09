@@ -36,3 +36,13 @@ class IndexView(View):
 
 
         return render(request, 'index.html', {'categorys':categorys, 'goodsList':page_goodsList, 'currentcid':cid, 'pagelist':pagelist, 'currentNum':num})
+
+
+class DetailView(View):
+    def get(self, request, goods_id):
+        goods_id = int(goods_id)
+
+        #根据商品id查询商品详情信息
+        goods = Goods.objects.get(id=goods_id)
+
+        return render(request,'detail.html', {'goods':goods})

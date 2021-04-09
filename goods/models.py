@@ -16,8 +16,36 @@ class Goods(models.Model):
 
     def __str__(self):
         return u'Goods:%s'%self.gname
+    #获取商品大图
     def getImg(self):
         return self.inventory_set.first().color.colorurl
+    #获取颜色
+    def getColorList(self):
+        colorList = []
+        for inventory in self.inventory_set.all():
+            color = inventory.color
+            if color not in colorList:
+                colorList.append(color)
+        return colorList
+    #获取尺寸
+    def getSizeList(self):
+        sizeList = []
+        for inventory in self.inventory_set.all():
+            size = inventory.size
+            if size not in sizeList:
+                sizeList.append(size)
+        return sizeList
+
+    def getDetailList(self):
+        import collections
+        datas = collections.OrderedDict()
+        for goodsdetail in self.goodsdetail_set.all():
+            gdname = goodsdetail.name()
+            if not datas.__contains__(gdname):
+                datas[gdname] = [goodsdetail.gdurl]
+            else:
+                datas[gdname].append(goodsdetail.gdurl)
+        return datas
 
 class GoodsDetailName(models.Model):
     gdname = models.CharField(max_length=30)
@@ -29,6 +57,8 @@ class GoodsDetail(models.Model):
     gdurl = models.ImageField(upload_to=' ')
     gdname = models.ForeignKey(GoodsDetailName, on_delete=models.CASCADE)
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE)
+    def name(self):
+        return self.gdname.gdname
 
 class Size(models.Model):
     sname = models.CharField(max_length=10)

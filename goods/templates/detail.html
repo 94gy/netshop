@@ -131,60 +131,32 @@
 
 
     <div class="goods-model" style="margin-right: -18px;text-align: center">
-        <img src="./首页_files/recommend.png" style="position: relative;left: -10px;top: 10px">
+        <img src="/static/recommend.png" style="position: relative;left: -10px;top: 10px">
 
         <div class="goods-content">
 
+            {% for recommend in recommendList %}
 
 
                     <div class="good">
-                        <a href="http://127.0.0.1:8000/goodsdetails/5">
-                            <img src="./首页_files/bai_mt1VrH5.jpg" width="285px" height="285px">
-                            <p class="name">秋时尚印花两件套装裙</p>
+                        <a href="/goodsdetails/{{ recommend.id }}">
+                            <img src="{{ recommend.getImg }}" width="285px" height="285px">
+                            <p class="name">{{ recommend.gname }}</p>
                             <div class="price">
                                 <i>￥</i>
-                                <p class="big">35.00</p>
-                                <s>￥100.00</s>
+                                <p class="big">{{ recommend.price }}</p>
+                                <s>￥{{ recommend.oldprice }}</s>
                             </div>
                             <div class="sale">
                                 特卖
                             </div>
                         </a>
                     </div>
+            {% endfor %}
 
 
 
-                    <div class="good">
-                        <a href="http://127.0.0.1:8000/goodsdetails/6">
-                            <img src="./首页_files/hong_y7wQwRw.jpg" width="285px" height="285px">
-                            <p class="name">韩版侧开叉宽松毛衣</p>
-                            <div class="price">
-                                <i>￥</i>
-                                <p class="big">39.00</p>
-                                <s>￥369.00</s>
-                            </div>
-                            <div class="sale">
-                                特卖
-                            </div>
-                        </a>
-                    </div>
 
-
-
-                    <div class="good">
-                        <a href="http://127.0.0.1:8000/goodsdetails/18">
-                            <img src="./首页_files/lv_eFlravj.jpg" width="285px" height="285px">
-                            <p class="name">时尚修身两件套装裙</p>
-                            <div class="price">
-                                <i>￥</i>
-                                <p class="big">68.90</p>
-                                <s>￥299.00</s>
-                            </div>
-                            <div class="sale">
-                                特卖
-                            </div>
-                        </a>
-                    </div>
 
 
 

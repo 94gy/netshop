@@ -22,6 +22,7 @@ from .settings import DEBUG, MEDIA_ROOT
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('goods.urls')),
+    url(r'^user/', include('userapp.urls')),
 ]
 
 if DEBUG:
